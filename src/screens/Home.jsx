@@ -4,7 +4,7 @@ import { useNavigation } from '@react-navigation/native';
 
 const API_KEY = 'NNJGmive1TRr6mOB7DUoJHZS6btrCX0mWqd2oWZEZUQKvgj9znf0EgKZ';
 
-const HomeScreen = ({navigation}) => {
+const HomeScreen = ({ navigation }) => {
     const [wallpapers, setWallpapers] = useState([])
     const [loadMore, setLoadMore] = useState(20);
     const [isDisable, setDisable] = useState(true);
@@ -31,21 +31,30 @@ const HomeScreen = ({navigation}) => {
             </View>
         );
     };
-
+    const handleProfile = ()=>{
+        if (navigation) {
+            navigation.navigate('profile');
+        }
+    }
     const handleHome = () => {
         if (navigation) {
             navigation.navigate('Home');
-          }
+        }
     };
     const handleCategories = () => {
         if (navigation) {
             navigation.navigate('category');
-          }
+        }
     };
 
     return (
         <View style={styles.container}>
-            <Text style={styles.title}>HD Wallpaper</Text>
+            <View style={styles.header}>
+                <Text style={styles.title}>HD Wallpaper</Text>
+                <TouchableOpacity onPress={handleProfile}>
+                    <Image source={require('../../assets/avatar.png')} />
+                </TouchableOpacity>
+            </View>
             <View style={styles.Toggle}>
                 <TouchableOpacity onPress={handleHome}>
                     <Text style={styles.ActiveToggle}>HOME</Text>
@@ -69,6 +78,13 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: "#131521",
         paddingTop: 60,
+    }, header: {
+        flexDirection: "row",
+        justifyContent: "space-between",
+        alignContent: "center",
+        paddingLeft: 20,
+        paddingRight: 20,
+        gap: 20,
     }, title: {
         textAlign: "center",
         fontSize: 25,

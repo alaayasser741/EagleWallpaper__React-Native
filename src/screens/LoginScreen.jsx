@@ -1,13 +1,26 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image, Alert } from 'react-native';
 
 const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-
   const handleLogin = () => {
-    if (navigation) {
+    navigation.navigate('Home');
+    if ((email === "alaa@gmail.com") && (password === "123") && (navigation)) {
       navigation.navigate('Home');
+    } else {
+      Alert.alert(
+        "Invalid credentials",
+        "Please enter a valid email or password.",
+        [
+          {
+            text: "OK",
+            onPress: () => console.log("OK pressed"),
+            style: "cancel",
+          },
+        ],
+        { cancelable: false }
+      );
     }
   };
 
@@ -24,7 +37,7 @@ const LoginScreen = ({ navigation }) => {
   };
 
   return (
-    <View style={styles.container}>
+    <View style={styles.container}> 
       <View style={styles.logoContainer}>
         <Image source={require("../../assets/logo.png")} style={{ width: 190, height: 168 }} />
         <Text style={styles.loginText}>Login</Text>
@@ -72,7 +85,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: '#131521',
     width: '100%',
-    padding:25,
+    padding: 25,
   },
   logoContainer: {
     alignItems: 'center',

@@ -9,6 +9,7 @@ import SplashScreen from "./src/screens/SplashScreen";
 const Stack = createStackNavigator();
 import HomeScreen from "./src/screens/Home";
 import CategoriesContent from "./src/screens/CategoriesContent";
+import ProfileScreen from "./src/screens/ProfileScreen";
 const App = () => {
   return (
     <NavigationContainer>
@@ -41,6 +42,11 @@ const App = () => {
         <Stack.Screen
           name="category"
           component={CategoriesContent}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="profile"
+          component={ProfileScreen}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>
